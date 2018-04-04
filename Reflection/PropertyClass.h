@@ -39,6 +39,7 @@
 #ifndef PROPERTYCLASS_H
 #define PROPERTYCLASS_H
 
+#include <cstdint>
 #include "Reflection/PropertyList.h"
 #include "Reflection/Containers.h"
 #include "Reflection/TypeTemplate.h"
@@ -54,7 +55,7 @@ void AddProperty( PropertyList * pList, const char * pName, const T & member,
 {
 	Type * pType = TypeSerialized<T>::instance();
 	pList->addProperty( new Property( new StaticContainer( nElements, pType->size() ), pName, 
-		reinterpret_cast<int>( &member ), pType, nFlags, pNote ) );
+		reinterpret_cast<std::uintptr_t>( &member ), pType, nFlags, pNote ) );
 }
 
 template<typename T>
@@ -64,7 +65,7 @@ void AddProperty( PropertyList * pList, const char * pName, const Array<T> & mem
 	Type * pType = TypeSerialized< T >::instance();
 	TypeSerialized< Array<T> >::instance();
 	pList->addProperty( new Property( new ArrayContainer<T>(), pName, 
-		reinterpret_cast<int>( &member ), pType, nFlags, pNote ) );
+		reinterpret_cast<std::uintptr_t>( &member ), pType, nFlags, pNote ) );
 }
 
 template<typename T>
@@ -74,7 +75,7 @@ void AddProperty( PropertyList * pList, const char * pName, const std::vector<T>
 	Type * pType = TypeSerialized< T >::instance();
 	TypeSerialized< Array<T> >::instance();
 	pList->addProperty( new Property( new VectorContainer<T>(), pName, 
-		reinterpret_cast<int>( &member ), pType, nFlags, pNote ) );
+		reinterpret_cast<std::uintptr_t>( &member ), pType, nFlags, pNote ) );
 }
 
 template<typename T>
@@ -84,7 +85,7 @@ void AddProperty( PropertyList * pList, const char * pName, const std::list<T> &
 	Type * pType = TypeSerialized< T >::instance();
 	TypeSerialized< Array<T> >::instance();
 	pList->addProperty( new Property( new ListContainer<T>(), pName, 
-		reinterpret_cast<int>( &member ), pType, nFlags, pNote ) );
+		reinterpret_cast<std::uintptr_t>( &member ), pType, nFlags, pNote ) );
 }
 
 template<typename T>
@@ -95,7 +96,7 @@ void AddEnumProperty( PropertyList * pList, const char * pName, const T & member
 	Type * pUnsignedInt = TypeSerialized<unsigned int>::instance();
 
 	Property * pProperty = new Property( new StaticContainer( nElements, pType->size() ), pName, 
-		reinterpret_cast<int>( &member ), pType, nFlags, pNote );
+		reinterpret_cast<std::uintptr_t>( &member ), pType, nFlags, pNote );
 	pList->addProperty( pProperty );
 
 	// T -> T
@@ -118,7 +119,7 @@ void AddBitsProperty( PropertyList * pList, const char * pName, const T & member
 	Type * pDWORD = TypeSerialized<dword>::instance();
 
 	Property * pProperty = new Property( new StaticContainer( nElements, pType->size() ), pName, 
-		reinterpret_cast<int>( &member ), pType, nFlags, pNote );
+		reinterpret_cast<std::uintptr_t>( &member ), pType, nFlags, pNote );
 	pList->addProperty( pProperty );
 
 	// T -> T
@@ -168,7 +169,7 @@ public:
 		static PropertyListTemplate<CLASS> LIST( BASE::staticPropertyList() );	\
 		if (! LIST.initialized() )										\
 		{																\
-			int nOffset = ((int)(CLASS *)(PropertyClass *)1) - 1;		\
+			std::uintptr_t nOffset = ((std::uintptr_t)(CLASS *)(PropertyClass *)1) - 1;		\
 			CLASS * pOBJECT = (CLASS *)nOffset;							\
 			LIST.initialize();
 
@@ -189,7 +190,7 @@ public:
 		static PropertyListAbstractTemplate<CLASS> LIST( BASE::staticPropertyList() );	\
 		if (! LIST.initialized() )										\
 		{																\
-			int nOffset = ((int)(CLASS *)(PropertyClass *)1) - 1;		\
+			std::uintptr_t nOffset = ((std::uintptr_t)(CLASS *)(PropertyClass *)1) - 1;		\
 			CLASS * pOBJECT = (CLASS *)nOffset;							\
 			LIST.initialize();
 

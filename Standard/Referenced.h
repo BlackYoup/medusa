@@ -13,6 +13,7 @@
 #include <assert.h>
 #include <stddef.h>
 #include <map>
+#include <cstdint>
 
 #include "Atomic.h"
 #include "Types.h"
@@ -137,7 +138,7 @@ inline Referenced::WeakReferenced * Referenced::grabWeakReferenced()
 	{
 		WeakReferenced * pNewWeak = new WeakReferenced( const_cast<Referenced *>( this ) );
 		if ( !Atomic::compareSwap( reinterpret_cast<volatile int *>( &m_pWeakRef ), 
-			0, reinterpret_cast<int>( pNewWeak ) ) )
+			0, reinterpret_cast<std::uintptr_t>( pNewWeak ) ) )
 		{
 			// another thread got there before us, so delete our copy..
 			delete pNewWeak;		
