@@ -42,17 +42,8 @@ LDFLAGS= -shared
 RESULT=libGCQD.so
 INTERMEDIATE_DIR=DebugLinux/obj
 DESTINATION_DIR=../Bin
-ifeq ("$(PLATFORM)","cygwin")
-	RM=rm -f
-	MKDIR=mkdir -p
-	INTERMEDIATE_DIR_MK=$(INTERMEDIATE_DIR)
-	DESTINATION_DIR_MK=$(DESTINATION_DIR)
-else
-	RM= rm -f
-	MKDIR= mkdir -p
-	INTERMEDIATE_DIR_MK=DebugLinux/obj
-	DESTINATION_DIR_MK=../Bin
-endif
+MKDIR= mkdir -p
+RM= rm -f
 
 endif
 
@@ -67,17 +58,8 @@ LDFLAGS= -shared
 RESULT=libGCQ.so
 INTERMEDIATE_DIR=ReleaseLinux/obj
 DESTINATION_DIR=../Bin
-ifeq ("$(PLATFORM)","cygwin")
-	RM=rm -f
-	MKDIR=mkdir -p
-	INTERMEDIATE_DIR_MK=$(INTERMEDIATE_DIR)
-	DESTINATION_DIR_MK=$(DESTINATION_DIR)
-else
-	RM= rm -f
-	MKDIR= mkdir -p
-	INTERMEDIATE_DIR_MK=ReleaseLinux/obj
-	DESTINATION_DIR_MK=../Bin
-endif
+MKDIR= mkdir -p
+RM= rm -f
 
 endif
 
@@ -94,16 +76,16 @@ OBJECTPATHS=$(addprefix $(INTERMEDIATE_DIR)/,$(OBJECTNAMES))
 
 $(DESTINATION_DIR)/$(RESULT): $(OBJECTNAMES)
 ifeq ("$(wildcard $(DESTINATION_DIR) )","")
-	-$(MKDIR) $(DESTINATION_DIR_MK)
+	-$(MKDIR) $(DESTINATION_DIR)
 endif
 	$(CXX) -shared $(CXXFLAGS) $(SYSROOTFLAGS) $(OBJECTPATHS) -o $@ $(LDFLAGS)
 
 $(INTERMEDIATE_DIR)/GCQ.d: $(SOURCES) $(HEADERS)
 ifeq ("$(wildcard $(DESTINATION_DIR) )","")
-	-$(MKDIR) $(DESTINATION_DIR_MK)
+	-$(MKDIR) $(DESTINATION_DIR)
 endif
 ifeq ("$(wildcard $(INTERMEDIATE_DIR) )","")
-	-$(MKDIR) $(INTERMEDIATE_DIR_MK)
+	-$(MKDIR) $(INTERMEDIATE_DIR)
 endif
 	$(CXX) $(CXXFLAGS) -MM $(SOURCEPATHS) > $@
 
