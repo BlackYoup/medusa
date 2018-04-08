@@ -35,8 +35,8 @@ ifeq ("$(BUILD_CONFIGURATION)","DebugLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -g -I ../ -I ../ThirdParty -D_DEBUG
-CXXFLAGS= -g -I ../ -I ../ThirdParty -D_DEBUG
+CFLAGS= -g -I ../ -I ../ThirdParty -D_DEBUG -std=c0x
+CXXFLAGS= -g -I ../ -I ../ThirdParty -D_DEBUG -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
 RESULT=libMedusaD.so
@@ -60,8 +60,8 @@ ifeq ("$(BUILD_CONFIGURATION)","ReleaseLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -O2 -g -I ../ -I ../ThirdParty -I ../ThirdParty/squish-1.10
-CXXFLAGS= -O2 -g -I ../ -I ../ThirdParty -I ../ThirdParty/squish-1.10
+CFLAGS= -O2 -g -I ../ -I ../ThirdParty -I ../ThirdParty/squish-1.10 -std=c0x
+CXXFLAGS= -O2 -g -I ../ -I ../ThirdParty -I ../ThirdParty/squish-1.10 -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
 RESULT=libMedusa.so
