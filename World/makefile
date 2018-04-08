@@ -51,8 +51,8 @@ ifeq ("$(BUILD_CONFIGURATION)","ReleaseLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -O2 -g -I ../ -I ../ThirdParty/LuaJIT/src/
-CXXFLAGS= -O2 -g -I ../ -I ../ThirdParty/LuaJIT/src/ -std=c++0x
+CFLAGS= -O2 -g -I ../ -I /usr/include/luajit-2.0/
+CXXFLAGS= -O2 -g -I ../ -I /usr/include/luajit-2.0/ -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
 RESULT=libWorld.so
