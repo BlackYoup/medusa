@@ -30,8 +30,9 @@ typedef int				socklen_t;
 #include <netdb.h>
 #include <errno.h>
 #include <unistd.h>
+#include <cstdint>
 
-typedef int				SOCKET;
+typedef std::uintptr_t			SOCKET;
 
 #define INVALID_SOCKET			(-1)
 #define SOCKET_ERROR            (-1)
