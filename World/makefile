@@ -35,7 +35,7 @@ ifeq ("$(BUILD_CONFIGURATION)","DebugLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -g -I ../ -I ../ThirdParty/LuaJIT/src/ -D_DEBUG -std=c1x
+CFLAGS= -g -I ../ -I ../ThirdParty/LuaJIT/src/ -D_DEBUG
 CXXFLAGS= -g -I ../ -I ../ThirdParty/LuaJIT/src/ -D_DEBUG -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
@@ -51,7 +51,7 @@ ifeq ("$(BUILD_CONFIGURATION)","ReleaseLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -O2 -g -I ../ -I ../ThirdParty/LuaJIT/src/ -std=c1x
+CFLAGS= -O2 -g -I ../ -I ../ThirdParty/LuaJIT/src/
 CXXFLAGS= -O2 -g -I ../ -I ../ThirdParty/LuaJIT/src/ -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared

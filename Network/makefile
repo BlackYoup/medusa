@@ -35,7 +35,7 @@ ifeq ("$(BUILD_CONFIGURATION)","DebugLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -g -I ../ -D_DEBUG -std=c1x
+CFLAGS= -g -I ../ -D_DEBUG
 CXXFLAGS= -g -I ../ -D_DEBUG -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
@@ -51,7 +51,7 @@ ifeq ("$(BUILD_CONFIGURATION)","ReleaseLinux")
 CC= gcc
 CXX= g++
 AR= ar
-CFLAGS= -O2 -g -I ../ -std=c1x
+CFLAGS= -O2 -g -I ../
 CXXFLAGS= -O2 -g -I ../ -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
