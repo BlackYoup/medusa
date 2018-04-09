@@ -36,7 +36,7 @@ CC= gcc
 CXX= g++
 AR= ar
 CFLAGS= -g -I ../
-CXXFLAGS= -g -I ../ -sdt=c++0x
+CXXFLAGS= -g -I ../ -std=c++0x
 ARFLAGS= cru
 LDFLAGS= -shared
 RESULT=libGCQD.so
